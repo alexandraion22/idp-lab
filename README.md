@@ -9,7 +9,12 @@
 - Crearea și gestionarea volumelor
 
 ### Exerciții:
-#### Exercițiul 1: Familiarizare cu rularea containerelor
+#### Exercițiul 1: Familiarizarea cu rularea containerelor
 #### Exercițiul 2: Crearea de imagini Docker personalizate
 #### Exercițiul 3: Lucrul cu rețele și volume în Docker
 
+## Laborator 2 - Docker Compose și Docker Swarm
+
+### Tematici:
+- Rularea containerelor folosind Docker Compose
+- Orchestarea serviciilor folosind Docker Swarm
