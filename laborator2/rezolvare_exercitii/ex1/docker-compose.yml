@@ -1,0 +1,40 @@
+services:
+    laborator2-api:
+        image: mobylab/idp-laborator2-api
+        ports:
+            - 5555:80
+        environment:
+            PGHOST: laborator2-db
+            PGDATABASE: books
+            PGPORT: 5432
+        networks:
+            - laborator2-db-network
+        depends_on:
+            - laborator2-db
+
+    laborator2-db:
+        image: postgres:12
+        environment:
+            POSTGRES_DB: books
+        volumes:
+            - "${PWD}/Database/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql"
+            - laborator2-db-persistent-volume:/var/lib/postgresql/data
+        networks:
+            - laborator2-db-network
+            - laborator2-db-admin
+            
+    laborator2-adminer:
+        image: adminer
+        ports:
+            - 8080:8080
+        networks:
+            - laborator2-db-admin
+        depends_on:
+            - laborator2-db
+
+volumes:
+    laborator2-db-persistent-volume:
+
+networks:
+    laborator2-db-network:
+    laborator2-db-admin:

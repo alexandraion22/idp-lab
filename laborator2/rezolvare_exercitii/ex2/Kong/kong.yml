@@ -1,0 +1,27 @@
+_format_version: "2.1"
+
+services:
+  - name: books-service
+    url: http://books-service/api
+    routes:
+      - name: books-service-route
+        paths: 
+          - /api/books
+          
+  - name: db-adminer
+    url: http://adminer:8080
+    routes:
+      - name: adminer-service
+        paths:
+          - /adminer
+
+consumers:
+  - username: lab-student
+
+plugins:
+  - name: key-auth
+    service: books-service
+
+keyauth_credentials:
+  - consumer: lab-student
+    key: mobylab

@@ -1,0 +1,40 @@
+services:
+    laborator1-api:
+        build: .
+        image: api-laborator-1-image
+        environment:
+            PGUSER: admin
+            PGPASSWORD: admin
+            PGDATABASE: books
+            PGHOST: laborator1-db
+            PGPORT: 5432
+        ports:
+            - "5555:80"
+        networks:
+            - laborator1-db-network
+        depends_on:
+            - laborator1-db
+
+    laborator1-db:
+        image: postgres
+        secrets:
+            - lab2-user-secret
+        environment:
+            POSTGRES_USER_FILE: /run/secrets/lab2-user-secret
+            POSTGRES_PASSWORD: admin
+            POSTGRES_DB: books
+        volumes:
+            - laborator1-db-persistent-volume:/var/lib/postgresql/data
+            - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+        networks:
+            - laborator1-db-network
+
+volumes:
+    laborator1-db-persistent-volume:
+
+networks:
+    laborator1-db-network:
+
+secrets:
+    lab2-user-secret:
+        file: ./secrets/lab2-user-secret.txt

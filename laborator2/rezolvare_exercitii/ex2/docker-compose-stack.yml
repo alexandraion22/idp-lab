@@ -1,0 +1,93 @@
+version: "3.8"
+
+services:
+    gateway:
+        image: mobylab/idp-laborator3-gateway
+        ports:
+            - 3000:80
+        environment:
+            BOOKS_SERVICE_API_ROUTE: books-service/api
+            NODE_ENV: development
+        deploy:
+            replicas: 3
+            placement:
+                max_replicas_per_node: 2
+            update_config:
+                parallelism: 2
+                order: start-first
+            rollback_config:
+                parallelism: 2
+                order: stop-first
+        networks:
+            - internal
+  
+    books-service:
+        image: mobylab/idp-laborator3-books
+        environment:
+            IO_SERVICE_API_ROUTE: io-service/api
+            NODE_ENV: development
+        deploy:
+            replicas: 2
+            placement:
+                max_replicas_per_node: 1
+            update_config:
+                order: start-first
+            rollback_config:
+                order: stop-first
+        networks:
+            - internal
+            - books
+
+    io-service:
+        image: mobylab/idp-laborator3-io
+        environment:
+            PGUSER: admin
+            PGPASSWORD: admin
+            PGHOST: db
+            PGPORT: 5432
+            PGDATABASE: books
+            NODE_ENV: development
+        deploy:
+            replicas: 3
+            placement:
+                max_replicas_per_node: 2
+            update_config:
+                order: start-first
+            rollback_config:
+                order: stop-first
+        networks:
+            - books
+            - database
+
+    db:
+        image: postgres:12
+        environment:
+            POSTGRES_DB: books
+            POSTGRES_USER: admin
+            POSTGRES_PASSWORD: admin
+        deploy:
+            placement:
+                constraints:
+                    - "node.role==manager"
+        volumes:
+            - ./Database/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+            - db-volume:/var/lib/postgresql/data
+        networks:
+            - database
+            - database-admin
+
+    adminer:
+        image: adminer
+        ports:
+            - 8080:8080
+        networks:
+            - database-admin
+
+volumes:
+    db-volume:
+
+networks:
+    internal:
+    books:
+    database:
+    database-admin:
