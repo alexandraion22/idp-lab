@@ -21,6 +21,12 @@ consumers:
 plugins:
   - name: key-auth
     service: books-service
+  - name: rate-limiting
+    config: 
+      minute: 3
+      limit_by: ip
+      policy: local
+
 
 keyauth_credentials:
   - consumer: lab-student
