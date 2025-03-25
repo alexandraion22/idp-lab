@@ -1,0 +1,83 @@
+version: "3.8"
+
+services:
+    books-service:
+        image: mobylab/idp-laborator3-books
+        environment:
+            IO_SERVICE_API_ROUTE: io-service/api
+            NODE_ENV: development
+        deploy:
+            replicas: 2
+        networks:
+            - internal
+            - books
+
+    io-service:
+        image: mobylab/idp-laborator3-io
+        environment:
+            PGUSER: admin
+            PGPASSWORD: admin
+            PGHOST: db
+            PGPORT: 5432
+            PGDATABASE: books
+            NODE_ENV: development
+        deploy:
+            replicas: 3
+        networks:
+            - books
+            - database
+
+    db:
+        image: postgres:12
+        environment:
+            POSTGRES_DB: books
+            POSTGRES_USER: admin
+            POSTGRES_PASSWORD: admin
+        deploy:
+            placement:
+                constraints:
+                    - "node.role==manager"
+        volumes:
+            - ./Database/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+            - db-volume:/var/lib/postgresql/data
+        networks:
+            - database
+            - database-admin
+
+    adminer:
+        image: adminer
+        networks:
+            - database-admin
+            - internal
+
+    kong:
+        image: kong:latest
+        volumes:
+            - ./Kong:/usr/local/kong/declarative
+        environment:
+            KONG_DATABASE: 'off'
+            KONG_DECLARATIVE_CONFIG: /usr/local/kong/declarative/kong.yml
+            KONG_PROXY_ACCESS_LOG: /dev/stdout
+            KONG_ADMIN_ACCESS_LOG: /dev/stdout
+            KONG_PROXY_ERROR_LOG: /dev/stderr
+            KONG_ADMIN_ERROR_LOG: /dev/stderr
+            KONG_ADMIN_LISTEN: 0.0.0.0:8001, 0.0.0.0:8444 ssl
+        ports:
+            - 80:8000
+            - 443:8443
+            - 8001:8001
+            - 8444:8444
+        deploy:
+            placement:
+                constraints: [node.role == manager]
+        networks:
+            - internal
+
+volumes:
+    db-volume:
+
+networks:
+    internal:
+    books:
+    database:
+    database-admin:
