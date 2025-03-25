@@ -17,4 +17,20 @@
 
 ### Tematici:
 - Rularea containerelor folosind Docker Compose
-- Orchestarea serviciilor folosind Docker Swarm
+- Orchestrarea serviciilor utilizând Docker Swarm
+
+### Exerciții:
+- Exercițiul 1: Utilizarea Docker Compose pentru pornirea containerelor
+- Exercițiul 2: Lansarea unei stive de servicii utilizând Docker Swarm
+
+## Laborator 3 - Persistența în Docker Swarm și Kong
+
+### Tematici:
+- Gestionarea persistenței în Docker Swarm
+- Utilizarea Kong API Gateway
+
+## Laborator 4 - Portainer și GitLab CI/CD
+
+### Tematici:
+- Utilizarea Portainer pentru monitorizarea și gestionarea stivelor de servicii
+- Implementarea unui pipeline folosind GitLab CI/CD
