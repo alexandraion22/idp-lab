@@ -34,3 +34,14 @@
 ### Tematici:
 - Utilizarea Portainer pentru monitorizarea și gestionarea stivelor de servicii
 - Implementarea unui pipeline folosind GitLab CI/CD
+
+### Exerciții:
+- Exercițiul 1: Crearea unui grup de repository-uri și implementarea unui pipeline CI/CD folosind GitLab
+  Rezolvare: https://gitlab.com/demo-idp
+
+## Laborator 5 - Monitorizare, logging, vizualizare, cozi de mesaje
+
+### Tematici:
+- Monitorizarea serviciilor și a clusterelor folosind linia de comandă, Prometheus, cAdvisor și Node Exporter
+- Realizarea logging-ului cu Loki și vizualizarea acestuia în Grafana
+- Implementarea cozilor de mesaje utilizând RabbitMQ
