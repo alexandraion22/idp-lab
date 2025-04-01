@@ -37,6 +37,7 @@
 
 ### Exerciții:
 - Exercițiul 1: Crearea unui grup de repository-uri și implementarea unui pipeline CI/CD folosind GitLab
+
   Rezolvare: https://gitlab.com/demo-idp
 
 ## Laborator 5 - Monitorizare, logging, vizualizare, cozi de mesaje
