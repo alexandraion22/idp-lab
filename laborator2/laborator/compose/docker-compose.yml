@@ -16,7 +16,7 @@ services:
             - laborator1-db
 
     laborator1-db:
-        image: postgres
+        image: postgres:16
         secrets:
             - lab2-user-secret
         environment:

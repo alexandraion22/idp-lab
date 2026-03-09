@@ -34,7 +34,7 @@ run() {
         -e POSTGRES_PASSWORD=admin \
         -e POSTGRES_DB=books \
         --name "$DB_CONTAINER" \
-        postgres
+        postgres:16
 
     echo "🔄 Starting API container ($API_CONTAINER)..."
     docker run -d \
@@ -82,7 +82,7 @@ full_clean() {
     docker rmi "$IMAGE_NAME" 2>/dev/null && echo "✅ Removed image." || echo "⚠️ Image not found or in use."
 
     echo "🛑 Removing PostgreSQL image..."
-    docker rmi "postgres" 2>/dev/null && echo "✅ Removed PostgreSQL image." || echo "⚠️ PostgreSQL image not found or in use."
+    docker rmi "postgres:16" 2>/dev/null && echo "✅ Removed PostgreSQL image." || echo "⚠️ PostgreSQL image not found or in use."
 }
 
 # Main execution flow
