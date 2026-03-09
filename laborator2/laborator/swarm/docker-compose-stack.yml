@@ -27,6 +27,9 @@ services:
       - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
     networks:
       - lab-net
+    deploy:
+      placement:
+        constraints: [node.role == manager]
 
   laborator2-visualizer:
     image: alexellis2/visualizer-arm:latest
@@ -36,6 +39,9 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock"
     networks:
       - lab-net
+    deploy:
+      placement:
+        constraints: [node.role == manager]
 
   adminer:
     image: adminer
@@ -43,9 +49,6 @@ services:
       - "8080:8080"
     networks:
       - lab-net
-    deploy:
-      placement:
-        constraints: [node.role == manager]
 
 networks:
   lab-net:
