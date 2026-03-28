@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
     testapp:
-        image: mobylab/idp-laborator4-testapp
+        image: alexandraion22/testapp-lab5
         ports:
             - 8000:8000
             - 5000:5000
@@ -10,6 +10,7 @@ services:
             - rabbitmq
         networks:
             - monitoring
+            - logging
             - rmq
 
     prometheus:
@@ -23,6 +24,7 @@ services:
                 constraints: [node.role == manager]
         networks:
             - monitoring
+            - visualizing
 
     node_exporter:
         image: prom/node-exporter
@@ -56,6 +58,31 @@ services:
         networks:
             - monitoring
 
+    loki:
+        image: grafana/loki
+        volumes:
+            - ./Loki/loki.yml:/etc/config/loki.yml
+            - ./Loki/wal:/wal
+        entrypoint:
+            - /usr/bin/loki
+            - -config.file=/etc/config/loki.yml
+        ports:
+            - 3100:3100
+        networks:
+            - logging
+            - visualizing
+
+    promtail:
+        image: grafana/promtail:latest
+        volumes:
+            - ./Promtail/promtail.yml:/etc/promtail/config.yml:ro
+            - /var/run/docker.sock:/var/run/docker.sock:ro
+        command: -config.file=/etc/promtail/config.yml
+        networks:
+            - logging
+        deploy:
+            mode: global
+
     grafana:
         image: grafana/grafana
         volumes:
@@ -65,7 +92,9 @@ services:
         deploy:
             placement:
                 constraints: [node.role == manager]
-    
+        networks:
+            - visualizing
+
     rabbitmq:
         image: rabbitmq:management-alpine
         ports:
@@ -76,7 +105,7 @@ services:
         hostname: rabbitmq
 
     worker:
-        image: mobylab/idp-laborator4-worker
+        image: alexandraion22/worker-lab5
         depends_on:
             - rabbitmq
         networks:
@@ -87,4 +116,6 @@ volumes:
 
 networks:
     monitoring:
+    logging:
+    visualizing:
     rmq:
