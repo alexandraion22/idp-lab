@@ -1,0 +1,136 @@
+{
+  "schema_version": "1.0.0",
+  "mode": "full",
+  "commit_sha": "435735989e74cec386e3196bedb44a62a3c65f23",
+  "author": "alexanamaria22@yahoo.com",
+  "timestamp": "2026-04-04T23:13:11+03:00",
+  "detection": {
+    "ai_assisted": true,
+    "method": "editor_hook",
+    "tool": "cursor",
+    "model": "",
+    "confidence": 1.0
+  },
+  "stats": {
+    "total_additions": 246,
+    "total_deletions": 0,
+    "ai_additions": 246,
+    "ai_deletions": 0,
+    "human_additions": 0,
+    "human_deletions": 0
+  },
+  "files": {
+    "laborator6/services/api-pod.yaml": {
+      "ai_additions": 21,
+      "human_additions": 0,
+      "ai_deletions": 0,
+      "human_deletions": 0,
+      "ai_lines": "1-21",
+      "human_lines": ""
+    },
+    "laborator6/services/db-config-map.yaml": {
+      "ai_additions": 8,
+      "human_additions": 0,
+      "ai_deletions": 0,
+      "human_deletions": 0,
+      "ai_lines": "1-8",
+      "human_lines": ""
+    },
+    "laborator6/services/db-pod.yaml": {
+      "ai_additions": 22,
+      "human_additions": 0,
+      "ai_deletions": 0,
+      "human_deletions": 0,
+      "ai_lines": "1-22",
+      "human_lines": ""
+    },
+    "laborator6/services/postgres-pv.yaml": {
+      "ai_additions": 14,
+      "human_additions": 0,
+      "ai_deletions": 0,
+      "human_deletions": 0,
+      "ai_lines": "1-14",
+      "human_lines": ""
+    },
+    "laborator6/services/postgres-pvc.yaml": {
+      "ai_additions": 11,
+      "human_additions": 0,
+      "ai_deletions": 0,
+      "human_deletions": 0,
+      "ai_lines": "1-11",
+      "human_lines": ""
+    },
+    "laborator6/services/postgres-service.yaml": {
+      "ai_additions": 13,
+      "human_additions": 0,
+      "ai_deletions": 0,
+      "human_deletions": 0,
+      "ai_lines": "1-13",
+      "human_lines": ""
+    },
+    "laborator6/services/service_commands.sh": {
+      "ai_additions": 15,
+      "human_additions": 0,
+      "ai_deletions": 0,
+      "human_deletions": 0,
+      "ai_lines": "1-15",
+      "human_lines": ""
+    },
+    "laborator6/standalone/commands.sh": {
+      "ai_additions": 55,
+      "human_additions": 0,
+      "ai_deletions": 0,
+      "human_deletions": 0,
+      "ai_lines": "1-55",
+      "human_lines": ""
+    },
+    "laborator6/standalone/configmap.yaml": {
+      "ai_additions": 7,
+      "human_additions": 0,
+      "ai_deletions": 0,
+      "human_deletions": 0,
+      "ai_lines": "1-7",
+      "human_lines": ""
+    },
+    "laborator6/standalone/configmap_demo_pod.yaml": {
+      "ai_additions": 16,
+      "human_additions": 0,
+      "ai_deletions": 0,
+      "human_deletions": 0,
+      "ai_lines": "1-16",
+      "human_lines": ""
+    },
+    "laborator6/standalone/deployment.yaml": {
+      "ai_additions": 21,
+      "human_additions": 0,
+      "ai_deletions": 0,
+      "human_deletions": 0,
+      "ai_lines": "1-21",
+      "human_lines": ""
+    },
+    "laborator6/standalone/nginxpod.yaml": {
+      "ai_additions": 10,
+      "human_additions": 0,
+      "ai_deletions": 0,
+      "human_deletions": 0,
+      "ai_lines": "1-10",
+      "human_lines": ""
+    },
+    "laborator6/standalone/nginxpod_generat.yaml": {
+      "ai_additions": 15,
+      "human_additions": 0,
+      "ai_deletions": 0,
+      "human_deletions": 0,
+      "ai_lines": "1-15",
+      "human_lines": ""
+    },
+    "laborator6/standalone/replicaset.yaml": {
+      "ai_additions": 18,
+      "human_additions": 0,
+      "ai_deletions": 0,
+      "human_deletions": 0,
+      "ai_lines": "1-18",
+      "human_lines": ""
+    }
+  }
+}
