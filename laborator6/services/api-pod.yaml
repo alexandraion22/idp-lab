@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: api-pod
+  labels:
+    app: api
+spec:
+  containers:
+    - name: api-container
+      image: andreidamian/lab3cc:first
+      env:
+        - name: PGUSER
+          value: "admin"
+        - name: PGPASSWORD
+          value: "admin"
+        - name: PGDATABASE
+          value: "books"
+        - name: PGHOST
+          value: "postgres"
+        - name: PGPORT
+          value: "5432"

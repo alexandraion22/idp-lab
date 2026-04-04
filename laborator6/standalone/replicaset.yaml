@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx-replicaset
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: myapp   # trebuie să coincidă
+  template:
+    metadata:
+      name: pod-template
+      labels:
+        app: myapp   # același label
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
